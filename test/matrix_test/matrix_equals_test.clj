@@ -20,12 +20,18 @@
   (let [tm (m/mutable (m/identity-matrix :ndarray 3))]
     (is (not (m/e= tm
                    (m/array :ndarray
-                            not-identity-matrix)))))
+                            not-identity-matrix))))
+    (is (m/e= (m/emap float tm)
+              (m/array :ndarray
+                       identity-matrix))))
 
   (let [tm (m/mutable (m/identity-matrix :vectorz 3))]
     (is (not (m/e= tm
                    (m/array :vectorz
-                            not-identity-matrix))))))
+                            not-identity-matrix))))
+    (is (m/e= tm
+              (m/array :vectorz
+                       identity-matrix)))))
 
 
 ;;; ----------------------------------------------------------------------
@@ -34,28 +40,40 @@
 ;;; ----------------------------------------------------------------------
 
 (deftest mutable-matrix-e==-test
-  ;; Fails
   (let [tm (m/mutable (m/identity-matrix :ndarray 3))]
+    ;; Fails
     (is (not (m/e== tm
                     (m/array :ndarray
-                             not-identity-matrix)))))
+                             not-identity-matrix))))
+    (is (m/e== tm
+               (m/array :ndarray
+                        identity-matrix))))
 
   (let [tm (m/mutable (m/identity-matrix :vectorz 3))]
     (is (not (m/e== tm
                     (m/array :vectorz
-                             not-identity-matrix))))))
+                             not-identity-matrix))))
+    (is (m/e== tm
+               (m/array :vectorz
+                        identity-matrix)))))
 
 (deftest mutable-matrix-equals-test
-  ;; Fails
   (let [tm (m/mutable (m/identity-matrix :ndarray 3))]
+    ;; Fails
     (is (not (m/equals tm
                        (m/array :ndarray
-                                not-identity-matrix)))))
+                                not-identity-matrix))))
+    (is (m/equals tm
+                  (m/array :ndarray
+                           identity-matrix))))
 
   (let [tm (m/mutable (m/identity-matrix :vectorz 3))]
     (is (not (m/equals tm
                        (m/array :vectorz
-                                not-identity-matrix))))))
+                                not-identity-matrix))))
+    (is (m/equals tm
+                  (m/array :vectorz
+                           identity-matrix)))))
 
 
 ;;; ----------------------------------------------------------------------
@@ -70,48 +88,75 @@
   (let [tm (m/identity-matrix :persistent-vector 3)]
     (is (not (m/e= tm
                    (m/array :persistent-vector
-                            not-identity-matrix)))))
+                            not-identity-matrix))))
+    (is (m/e= tm
+              (m/array :persistent-vector
+                       identity-matrix))))
 
   (let [tm (m/identity-matrix :ndarray 3)]
     (is (not (m/e= tm
                    (m/array :ndarray
-                            not-identity-matrix)))))
+                            not-identity-matrix))))
+    (is (m/e= (m/emap float tm)
+              (m/array :ndarray
+                       identity-matrix))))
 
   (let [tm (m/identity-matrix :vectorz 3)]
     (is (not (m/e= tm
                    (m/array :vectorz
-                            not-identity-matrix))))))
+                            not-identity-matrix))))
+    (is (m/e= tm
+              (m/array :vectorz
+                       identity-matrix)))))
 
 (deftest matrix-e==-test
   (let [tm (m/identity-matrix :persistent-vector 3)]
     (is (not (m/e== tm
                     (m/array :persistent-vector
-                             not-identity-matrix)))))
+                             not-identity-matrix))))
+    (is (m/e== tm
+               (m/array :persistent-vector
+                        identity-matrix))))
 
   ;; Fails
   (let [tm (m/identity-matrix :ndarray 3)]
     (is (not (m/e== tm
                     (m/array :ndarray
-                             not-identity-matrix)))))
+                             not-identity-matrix))))
+    (is (m/e== tm
+               (m/array :ndarray
+                        identity-matrix))))
 
   (let [tm (m/identity-matrix :vectorz 3)]
     (is (not (m/e== tm
                     (m/array :vectorz
-                             not-identity-matrix))))))
+                             not-identity-matrix))))
+    (is (m/e== tm
+               (m/array :vectorz
+                        identity-matrix)))))
 
 (deftest matrix-equals-test
   (let [tm (m/identity-matrix :persistent-vector 3)]
     (is (not (m/equals tm
                        (m/array :persistent-vector
-                                not-identity-matrix)))))
+                                not-identity-matrix))))
+    (is (m/equals tm
+                  (m/array :persistent-vector
+                           identity-matrix))))
 
-  ;; Fails
   (let [tm (m/identity-matrix :ndarray 3)]
+    ;; Fails
     (is (not (m/equals tm
                        (m/array :ndarray
-                                not-identity-matrix)))))
+                                not-identity-matrix))))
+    (is (m/equals tm
+                  (m/array :ndarray
+                           identity-matrix))))
 
   (let [tm (m/identity-matrix :vectorz 3)]
     (is (not (m/equals tm
                        (m/array :vectorz
-                                not-identity-matrix))))))
+                                not-identity-matrix))))
+    (is (m/equals tm
+                  (m/array :vectorz
+                           identity-matrix)))))
